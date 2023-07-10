@@ -10,11 +10,14 @@ let [command, inputFilepath, outputFilepath] = process.argv.slice(2)
 
 const build = () => {
   const start = Date.now()
-  // simple parsing with no options
-  const contents = fs.readFileSync(path.join(process.cwd(), ...inputFilepath.split('/')), { encoding: 'utf8' })
+  
+  const contents = fs.readFileSync(
+    path.join(process.cwd(), ...inputFilepath.split('/')), 
+    { encoding: 'utf8' }
+  )
   const ast = parse(contents)
 
-  let simple =
+  const listOfAllClassNames =
     ([...ast.children])
       .flatMap(x => {
         try {
@@ -27,9 +30,10 @@ const build = () => {
       .map(x => x.name)
 
   let dedupe = (list) => [...new Set(list)]
-  let camel = varName => varName.split('-').join('_')
+  let camel = varName => lowercase(varName).split('-').join('_')
+  let lowercase = varName => varName.charAt(0).toLowerCase() + varName.slice(1)
 
-  const classNames = dedupe(simple)
+  const classNames = dedupe(listOfAllClassNames)
 
   const template = `
 module Css exposing (${classNames.map(camel).join(', ')})
@@ -65,5 +69,6 @@ if (command === 'build') {
     .watch(path.join(process.cwd(), ...inputFilepath.split('/')))
     .on('all', build)
 } else {
-  console.error(`Unknown command ${command}`)
+  console.error(`Unknown command: ${command}`)
+  process.exit(1)
 }

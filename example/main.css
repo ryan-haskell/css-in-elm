@@ -9,3 +9,6 @@
 
 .gap-sm { gap: 0.5rem; }
 .gap-md { gap: 1rem; }
+.gap-lg { gap: 2rem; }
+
+.text-red { color: red; }

@@ -1,11 +1,11 @@
 module Main exposing (main)
 
-import Css exposing (..)
-import Html exposing (div, span, text)
+import Css
+import Html exposing (..)
 
 
 main =
-    div [ row, gap_lg ]
-        [ span [] [ text "Hello" ]
+    div [ Css.row, Css.gap_md ]
+        [ span [ Css.text_red ] [ text "Hello" ]
         , span [] [ text "world" ]
         ]

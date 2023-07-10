@@ -1,5 +1,5 @@
 {
-  "name": "css-in-elm",
+  "name": "@ryannhg/css-in-elm",
   "version": "1.0.0",
   "description": "Generate an Elm module for your CSS files.",
   "main": "src/index.js",
