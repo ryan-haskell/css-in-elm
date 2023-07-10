@@ -1,0 +1,16 @@
+{
+  "name": "css-in-elm",
+  "version": "1.0.0",
+  "description": "Generate an Elm module for your CSS files.",
+  "main": "src/index.js",
+  "bin": "src/index.js",
+  "scripts": {
+    "demo": "(npm install && npm link && cd example && css-in-elm build main.css dist/Css.elm)"
+  },
+  "author": "Ryan Haskell-Glatz",
+  "license": "ISC",
+  "dependencies": {
+    "chokidar-cli": "3.0.0",
+    "css-tree": "2.3.1"
+  }
+}
